@@ -11,7 +11,6 @@ const TEMPLATE_DIR = path.join(PKG_ROOT, 'template');
 // Generated artifacts (criados pelo Edax no Setup) ficam ao lado mas com nomes diferentes.
 const TEMPLATE_ITEMS = [
   { src: 'CLAUDE.md',                              dest: 'CLAUDE.md' },
-  { src: '.claude/agents/edax.md',                 dest: '.claude/agents/edax.md' },
   { src: '.claude/agents/critic.md',               dest: '.claude/agents/critic.md' },
   { src: '.claude/skills/intake',                  dest: '.claude/skills/intake', dir: true },
   { src: '.claude/skills/design-solution',         dest: '.claude/skills/design-solution', dir: true },

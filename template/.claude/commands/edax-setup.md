@@ -1,7 +1,5 @@
 ---
-description: Inicia (ou retoma) o Modo Setup do Edax para configurar este workspace para um novo caso de uso.
+description: Inicia (ou retoma) o Modo Setup para configurar este workspace para um novo caso de uso.
 ---
 
-Invoque o subagente **edax** (`.claude/agents/edax.md` desta pasta).
-
-Diga a ele: *"Entre em Modo Setup e conduza a entrevista. Se já houver progresso parcial em `config/`, retome do checkpoint pendente. Comece pelo passo 0 (idioma) caso `config/language.md` não exista."*
+Entre em **Modo Setup** conforme as instruções do `CLAUDE.md`. Se já houver progresso parcial em `config/`, retome do checkpoint pendente. Se `config/language.md` ainda não existir, comece pelo Passo 0 (idioma). Se for a primeira interação na pasta, apresente-se brevemente como Edax antes de prosseguir.

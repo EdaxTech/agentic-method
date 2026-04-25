@@ -79,11 +79,10 @@ A cada execução, Edax:
 
 ```
 ~/trabalhos/indicadores-mensais/
-├── CLAUDE.md                         ← copiado do template
+├── CLAUDE.md                         ← template — É a identidade do Edax (system prompt)
 ├── .claude/
 │   ├── agents/
-│   │   ├── edax.md                   ← template
-│   │   ├── critic.md                 ← template
+│   │   ├── critic.md                 ← template (subagente, invocado em Runtime)
 │   │   └── <gerados>.md              ← criados pelo Edax no Setup
 │   ├── skills/
 │   │   ├── intake/                   ← template
@@ -112,7 +111,9 @@ A cada execução, Edax:
         └── 30-entregaveis/
 ```
 
-A distinção entre **template** e **gerado** é por nome: `edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run` e prefixos `edax-` são template (gerenciados pelo `update`); qualquer outro nome em `.claude/` foi criado pelo Edax e pode ser editado livremente.
+**Onde mora o Edax:** o `CLAUDE.md` da pasta É o system prompt do Edax — não há subagente separado. Quando você abre o Claude Code aqui, o agente principal carrega essas instruções e passa a operar como Edax. Para conversa fluida e contínua (em vez do padrão de subagente "uma rodada e retorna").
+
+A distinção entre **template** e **gerado** é por nome: `CLAUDE.md`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run`, `edax-setup`, `edax-run`, `edax-review` são template (gerenciados pelo `update`); qualquer outro nome em `.claude/` foi criado pelo Edax e pode ser editado livremente.
 
 ---
 

@@ -1,11 +1,11 @@
 ---
 name: intake
-description: Conduzir a entrevista de descoberta e levantamento de requisitos com o usuário no Modo Setup do Edax. Cobre os checkpoints 1–4 — enquadramento do problema, SIPOC, spec de insumos, spec de entregáveis. Use técnicas de elicitação ativa (reformulação, exemplos concretos, casos de borda) — não é um formulário.
+description: Conduzir a entrevista de descoberta e levantamento de requisitos com o usuário no Modo Setup. Cobre os checkpoints 1–4 — enquadramento do problema, SIPOC, spec de insumos, spec de entregáveis. Use técnicas de elicitação ativa (reformulação, exemplos concretos, casos de borda) — não é um formulário.
 ---
 
 # intake — entrevista de descoberta (checkpoints 1–4)
 
-Você usa esta skill durante o Modo Setup do Edax para conduzir os primeiros quatro checkpoints com o usuário: enquadrar o problema, mapear o SIPOC, e detalhar os specs de insumos e entregáveis.
+Você usa esta skill durante o Modo Setup para conduzir os primeiros quatro checkpoints com o usuário: enquadrar o problema, mapear o SIPOC, e detalhar os specs de insumos e entregáveis.
 
 > **Nota sobre idioma.** Os exemplos de fala abaixo estão em PT-BR. Adapte para o idioma definido em `config/language.md`. Os arquivos gerados (`config/*.md`) seguem o **idioma de artefatos** registrado lá.
 
@@ -78,7 +78,7 @@ _Aprovado em: <data ISO>_
 
 ## Checkpoint 3 — Spec de insumos
 
-**Objetivo.** Produzir `config/inputs-spec.md` com tudo que Edax precisa saber para receber e validar os insumos em Runtime.
+**Objetivo.** Produzir `config/inputs-spec.md` com tudo que você precisa saber para receber e validar os insumos em Runtime.
 
 Cubra estes pontos **em conversa, não como questionário**:
 
@@ -166,7 +166,7 @@ _Aprovado em: <data ISO>_
 
 ## Ao terminar
 
-Você cobriu os checkpoints 1–4. Os arquivos `config/sipoc.md`, `config/inputs-spec.md` e `config/deliverables-spec.md` devem estar gravados e aprovados. Devolva o controle para o Edax seguir com a skill `design-solution` (checkpoints 5–6).
+Você cobriu os checkpoints 1–4. Os arquivos `config/sipoc.md`, `config/inputs-spec.md` e `config/deliverables-spec.md` devem estar gravados e aprovados. Prossiga para a skill `design-solution` (checkpoints 5–6).
 
 ## Quando o usuário pede para voltar
 

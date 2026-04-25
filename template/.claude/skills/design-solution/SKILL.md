@@ -1,11 +1,11 @@
 ---
 name: design-solution
-description: Desenhar a arquitetura da solução com o usuário no Modo Setup do Edax, depois que o intake terminou. Cobre os checkpoints 5–6 — desenho do workflow (etapas, executores, fluxo de dados) e critérios do crítico específicos do domínio. A saída desta skill é a entrada do checkpoint 7 (scaffold).
+description: Desenhar a arquitetura da solução com o usuário no Modo Setup, depois que o intake terminou. Cobre os checkpoints 5–6 — desenho do workflow (etapas, executores, fluxo de dados) e critérios do crítico específicos do domínio. A saída desta skill é a entrada do checkpoint 7 (scaffold).
 ---
 
 # design-solution — desenho da arquitetura (checkpoints 5–6)
 
-Você usa esta skill durante o Modo Setup do Edax, depois que `intake` aprovou os checkpoints 1–4. Os arquivos `config/sipoc.md`, `config/inputs-spec.md` e `config/deliverables-spec.md` já existem — leia-os antes de começar.
+Você usa esta skill durante o Modo Setup, depois que `intake` aprovou os checkpoints 1–4. Os arquivos `config/sipoc.md`, `config/inputs-spec.md` e `config/deliverables-spec.md` já existem — leia-os antes de começar.
 
 > **Idioma.** Adapte os exemplos de fala para o que estiver em `config/language.md`. Os arquivos gerados seguem o idioma de artefatos.
 
@@ -144,7 +144,7 @@ Você cobriu os checkpoints 5–6. Devem existir e estar aprovados:
 - `config/workflow.md` (com a tabela "Artefatos a gerar")
 - `config/critic-criteria.md`
 
-Devolva o controle para o Edax, que invocará a skill `scaffold` (checkpoint 7) com a tabela de artefatos como entrada principal.
+Prossiga para a skill `scaffold` (checkpoint 7), usando a tabela de artefatos como entrada principal.
 
 ## Quando o usuário pede para voltar
 

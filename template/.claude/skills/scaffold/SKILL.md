@@ -1,6 +1,6 @@
 ---
 name: scaffold
-description: Gerar os arquivos `.md` de skills e subagentes específicos do caso de uso, no checkpoint 7 do Setup do Edax. Lê a tabela "Artefatos a gerar" de `config/workflow.md` e cria, com aprovação por arquivo, cada skill e cada subagente. Atualiza `config/generated-manifest.md`. Não toca em arquivos do template-mãe.
+description: Gerar os arquivos `.md` de skills e subagentes específicos do caso de uso, no checkpoint 7 do Setup. Lê a tabela "Artefatos a gerar" de `config/workflow.md` e cria, com aprovação por arquivo, cada skill e cada subagente. Atualiza `config/generated-manifest.md`. Não toca em arquivos do template-mãe.
 ---
 
 # scaffold — geração dos artefatos do caso de uso (checkpoint 7)
@@ -28,7 +28,7 @@ Devem existir e estar aprovados:
 - `config/critic-criteria.md`
 - `config/language.md`
 
-Se faltar algum, **pare e devolva o controle ao Edax**: o checkpoint anterior não foi cumprido.
+Se faltar algum, **pare**: o checkpoint anterior não foi cumprido — volte ao fluxo do `CLAUDE.md` e retome o checkpoint pendente antes de chamar `scaffold` de novo.
 
 ---
 
@@ -61,7 +61,7 @@ Quando todos estiverem criados:
 1. Liste todos os arquivos gerados.
 2. *"Scaffold completo. Quer revisar algum arquivo antes de encerrar o Setup?"*
 3. Se o usuário pedir ajustes finais, edite e atualize a data de modificação no manifest.
-4. Devolva o controle ao Edax para o checkpoint 8 (dry-run, se aplicável) ou 9 (encerramento).
+4. Prossiga para o checkpoint 8 (dry-run, se aplicável) ou 9 (encerramento).
 
 ---
 
@@ -154,7 +154,7 @@ Você escreve em `.claude/agents/<nome>.md` e `.claude/skills/<nome>/SKILL.md` d
 
 **Nomes reservados ao template-mãe (não use):** `edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run`. Os arquivos correspondentes em `.claude/agents/`, `.claude/skills/` e `.claude/commands/` (com prefixo `edax-`) são geridos pelo `npx github:EdaxTech/agentic-method update`, não por você.
 
-Se algum nome proposto na tabela de artefatos colidir com um desses, **pare na etapa A** e peça ao usuário (via Edax) para renomear o artefato no `workflow.md` — sobrescrever um arquivo do template quebraria o próprio Edax.
+Se algum nome proposto na tabela de artefatos colidir com um desses, **pare na etapa A** e peça ao usuário para renomear o artefato no `workflow.md` — sobrescrever um arquivo do template quebraria o próprio sistema.
 
 ---
 

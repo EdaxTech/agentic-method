@@ -1,6 +1,6 @@
 ---
 name: new-run
-description: Criar a estrutura de pastas para uma nova execução do workflow no Modo Runtime do Edax. Usa o padrão configurado em `config/workflow.md` (default `runs/YYYY-MM/`); se a pasta já existir, cria `YYYY-MM-v2/`, `v3/`, ... preservando a anterior. Também cria as sub-pastas `00-insumos/`, `10-analises/`, `20-avaliacao-critica/`, `30-entregaveis/` e um `_run.md` com metadados.
+description: Criar a estrutura de pastas para uma nova execução do workflow no Modo Runtime. Usa o padrão configurado em `config/workflow.md` (default `runs/YYYY-MM/`); se a pasta já existir, cria `YYYY-MM-v2/`, `v3/`, ... preservando a anterior. Também cria as sub-pastas `00-insumos/`, `10-analises/`, `20-avaliacao-critica/`, `30-entregaveis/` e um `_run.md` com metadados.
 ---
 
 # new-run — criar nova execução (Runtime)
@@ -56,11 +56,11 @@ Em `runs/<nome-final>/_run.md`:
 - <data hora> — run criada por `new-run`.
 ```
 
-A coluna **Status** será atualizada por outras etapas conforme a run avança (`insumos-recebidos`, `analises-em-andamento`, `revisao-critica`, `entregue`, `entregue-com-ressalvas`, `bloqueada`). Edax é responsável por atualizar.
+A coluna **Status** será atualizada por outras etapas conforme a run avança (`insumos-recebidos`, `analises-em-andamento`, `revisao-critica`, `entregue`, `entregue-com-ressalvas`, `bloqueada`). Você é responsável por mantê-la atualizada.
 
-### 5. Devolver controle ao Edax
+### 5. Pedir os insumos ao usuário
 
-Anuncie ao usuário: *"Run `<nome-final>` criada. Estrutura pronta em `runs/<nome-final>/`. Pode me passar os insumos (anexar arquivos, colar conteúdo, ou apontar uma pasta) para colocar em `00-insumos/`."*
+Anuncie: *"Run `<nome-final>` criada. Estrutura pronta em `runs/<nome-final>/`. Pode me passar os insumos (anexar arquivos, colar conteúdo, ou apontar uma pasta) para colocar em `00-insumos/`."*
 
 ## Quando NÃO usar esta skill
 
