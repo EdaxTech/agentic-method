@@ -74,8 +74,11 @@ Conduza os checkpoints abaixo **um por vez**. Ao fim de cada um:
 | 7 | Scaffold | `scaffold` | arquivos em `.claude/skills/<nome>/SKILL.md`, `.claude/agents/<nome>.md`, registrados em `config/generated-manifest.md` |
 | 8 | Dry-run (se houver insumo de exemplo) | workflow gerado | pasta `runs/setup-dryrun/` |
 | 9 | Encerramento | — | confirma com o usuário que tudo está pronto |
+| 9.5 | Manual da solução | `write-manual` | `MANUAL.md` na raiz da instância |
 
-Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (instaladas em `.claude/skills/` desta pasta) para conduzir cada checkpoint — elas existem para isso.
+No CP9.5, pergunte: *"Posso gerar agora o `MANUAL.md` desta solução? (recomendado — quem receber esta pasta lê esse arquivo primeiro)"*. Se sim (default), invoque `write-manual`.
+
+Use as skills `intake`, `design-solution`, `scaffold`, `new-run` e `write-manual` (instaladas em `.claude/skills/` desta pasta) para conduzir cada checkpoint — elas existem para isso.
 
 ### Regras de scaffold (checkpoint 7)
 
@@ -96,6 +99,18 @@ Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (instaladas em
 
 ---
 
+## Manutenção pós-Setup — manter o `MANUAL.md` em dia
+
+Existência de `MANUAL.md` na raiz da instância indica que o Setup já terminou (passou pelo CP9.5).
+
+**Sempre que você editar qualquer arquivo em `config/`** (porque o usuário pediu ajuste num checkpoint via `/edax-setup`, ou porque mudou regras de domínio), **regenere automaticamente o `MANUAL.md`** invocando a skill `write-manual` ao final do ajuste, e avise:
+
+> *"Atualizei também o `MANUAL.md` para refletir essa mudança."*
+
+Não regenere para ajustes em `runs/<run>/...` (são locais à execução) nem para mudanças de implementação interna em arquivos gerados de `.claude/agents/` ou `.claude/skills/` que não afetem o que está documentado no manual.
+
+---
+
 ## Onde você pode escrever (e onde nunca)
 
 O template-mãe foi copiado para esta pasta e convive, no mesmo `.claude/`, com os artefatos que você for gerar no Setup. A distinção é por **nome de arquivo**.
@@ -108,9 +123,11 @@ O template-mãe foi copiado para esta pasta e convive, no mesmo `.claude/`, com 
 - `.claude/skills/design-solution/`
 - `.claude/skills/scaffold/`
 - `.claude/skills/new-run/`
+- `.claude/skills/write-manual/`
 - `.claude/commands/edax-setup.md`
 - `.claude/commands/edax-run.md`
 - `.claude/commands/edax-review.md`
+- `.claude/commands/edax-manual.md`
 
 Se o usuário pedir para alterar algum desses, explique que eles se atualizam por `npx github:EdaxTech/agentic-method update` (de fora desta sessão), não por edição direta sua.
 
@@ -121,7 +138,9 @@ Se o usuário pedir para alterar algum desses, explique que eles se atualizam po
 - `.claude/agents/<gerados>.md` — subagentes específicos do caso (criados no checkpoint 7) — qualquer nome diferente dos reservados
 - `.claude/skills/<gerados>/SKILL.md` — skills específicas do caso (criadas no checkpoint 7) — idem
 
-**Nomes reservados ao template (não use para artefatos gerados):** `critic`, `intake`, `design-solution`, `scaffold`, `new-run`, `edax-setup`, `edax-run`, `edax-review`.
+**Nomes reservados ao template (não use para artefatos gerados):** `critic`, `intake`, `design-solution`, `scaffold`, `new-run`, `write-manual`, `edax-setup`, `edax-run`, `edax-review`, `edax-manual`.
+
+**`MANUAL.md` na raiz** é gerado por você (skill `write-manual`) — não é template-mãe e pode ser regravado livremente; mas o usuário pode customizar manualmente entre regenerações, então sobrescrever é OK só quando houver mudança real em `config/` ou via `/edax-manual`.
 
 Tudo que você gera fica registrado em `config/generated-manifest.md`.
 

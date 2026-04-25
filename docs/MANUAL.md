@@ -254,9 +254,16 @@ Para cada checkpoint, este manual mostra: **o que vai acontecer**, **exemplo de 
 
 - **O que vai acontecer**: Edax confirma que tudo está pronto e te lembra que próximas chamadas (`/edax-run`) entrarão em Modo Runtime.
 
+#### CP9.5 — Manual da solução
+
+- **O que vai acontecer**: Edax pergunta *"Posso gerar agora o `MANUAL.md` desta solução? (recomendado)"*. Se você aprovar, ele lê todos os configs e produz um `MANUAL.md` na raiz da instância — em prosa amigável, no idioma de artefatos, escrito para o **operador** (você daqui a 6 meses, ou um colega que receber a pasta).
+- **Por que existe**: o `config/` tem o conteúdo, mas em formato técnico. O `MANUAL.md` reescreve tudo para quem só quer **operar**, sem precisar entender SIPOC, skills ou critérios universais.
+- **Manutenção**: sempre que você ajustar qualquer arquivo em `config/` depois disso, Edax regenera o `MANUAL.md` automaticamente. Para regenerar manualmente, use `/edax-manual`.
+- **Grava em**: `MANUAL.md` na **raiz** da instância (não em `docs/`).
+
 ### Ajustes depois de fechar um checkpoint
 
-A qualquer momento você pode dizer *"espera, no checkpoint X eu queria mudar Y"*. Edax volta, edita o arquivo correspondente, atualiza a data de aprovação, e depois retorna para onde vocês estavam.
+A qualquer momento você pode dizer *"espera, no checkpoint X eu queria mudar Y"*. Edax volta, edita o arquivo correspondente, atualiza a data de aprovação, e depois retorna para onde vocês estavam. Se o `MANUAL.md` já existir, Edax o regenera automaticamente ao final do ajuste.
 
 ---
 
@@ -343,6 +350,7 @@ Editou manualmente uma análise em `10-analises/` e quer que o critic revise de 
 | `/edax-setup` | Configurar a instância (uma vez por caso de uso) ou retomar Setup parcial | `/edax-setup` |
 | `/edax-run [rótulo]` | Disparar nova execução do workflow já configurado | `/edax-run 2026-04` |
 | `/edax-review [run]` | Revisar de novo o critic sobre uma run específica | `/edax-review 2026-04` |
+| `/edax-manual` | Regenerar o `MANUAL.md` da instância a partir do estado atual de `config/` | `/edax-manual` |
 
 Sem comandos, você também pode falar com o Edax em linguagem natural — ele entende intenção. Os comandos são atalhos.
 
@@ -352,7 +360,8 @@ Sem comandos, você também pode falar com o Edax em linguagem natural — ele e
 
 ```
 minha-instancia/
-├── CLAUDE.md                         ← template — É a identidade do Edax (system prompt)
+├── CLAUDE.md                         ← template — identidade do Edax (system prompt)
+├── MANUAL.md                         ← gerado por Edax no CP9.5 — manual de operação da solução
 ├── .claude/
 │   ├── agents/
 │   │   ├── critic.md                 ← template (subagente, invocado em Runtime)
@@ -362,11 +371,13 @@ minha-instancia/
 │   │   ├── design-solution/          ← template
 │   │   ├── scaffold/                 ← template
 │   │   ├── new-run/                  ← template
+│   │   ├── write-manual/             ← template
 │   │   └── <gerados>/                ← criados pelo Edax no CP7
 │   └── commands/
 │       ├── edax-setup.md             ← template
 │       ├── edax-run.md               ← template
-│       └── edax-review.md            ← template
+│       ├── edax-review.md            ← template
+│       └── edax-manual.md            ← template
 ├── config/                           ← preenchido no Setup
 │   ├── language.md
 │   ├── sipoc.md
@@ -388,8 +399,9 @@ minha-instancia/
 
 ### O que **mexer** e o que **não mexer**
 
-- **Não mexa** em arquivos do template (`CLAUDE.md`, `critic.md`, `intake/`, `design-solution/`, `scaffold/`, `new-run/`, `edax-*.md`). Eles se atualizam por `npx ... update`. Se você editar e depois rodar `update`, sua edição é sobrescrita.
+- **Não mexa** em arquivos do template (`CLAUDE.md`, `critic.md`, `intake/`, `design-solution/`, `scaffold/`, `new-run/`, `write-manual/`, `edax-*.md`). Eles se atualizam por `npx ... update`. Se você editar e depois rodar `update`, sua edição é sobrescrita.
 - **Pode mexer** em arquivos gerados (`config/*`, `.claude/agents/<gerados>.md`, `.claude/skills/<gerados>/`). Edição manual sua é preservada — `update` não toca aí.
+- **Pode mexer** em `MANUAL.md`, mas atenção: ele é regenerado automaticamente quando você ajusta `config/`, ou manualmente com `/edax-manual`. Customizações suas serão sobrescritas. Se quer customização permanente, faça via ajuste em `config/` (e o manual regenerado já vai refletir).
 - **Pode mexer** em `runs/*` se precisar corrigir um insumo manualmente, mas considere reprocessar (`-v2`) em vez de editar a run original — preserva auditoria.
 
 ---
@@ -636,6 +648,7 @@ Os arquivos do template são atualizados; seus arquivos gerados e configs são p
 | **Frontmatter** | Bloco `---` no topo de arquivos `.md` com metadados YAML (`name`, `description`). |
 | **Instância** | Uma pasta dedicada a um caso de uso. |
 | **Manifest** | `config/generated-manifest.md`, listando tudo que foi criado pelo scaffold. |
+| **MANUAL.md (instância)** | Documento na raiz da instância, gerado no CP9.5 pela skill `write-manual`. Manual operacional do caso de uso, escrito para o operador (não o desenvolvedor do template). Regenerado automaticamente quando algo em `config/` muda. |
 | **Modo Setup** | Fase de configuração de uma instância nova. |
 | **Modo Runtime** | Fase de execução em instância já configurada. |
 | **Run** | Uma execução do workflow. Cada run é uma sub-pasta em `runs/`. |

@@ -16,9 +16,11 @@ const TEMPLATE_ITEMS = [
   { src: '.claude/skills/design-solution',         dest: '.claude/skills/design-solution', dir: true },
   { src: '.claude/skills/scaffold',                dest: '.claude/skills/scaffold', dir: true },
   { src: '.claude/skills/new-run',                 dest: '.claude/skills/new-run', dir: true },
+  { src: '.claude/skills/write-manual',            dest: '.claude/skills/write-manual', dir: true },
   { src: '.claude/commands/edax-setup.md',         dest: '.claude/commands/edax-setup.md' },
   { src: '.claude/commands/edax-run.md',           dest: '.claude/commands/edax-run.md' },
   { src: '.claude/commands/edax-review.md',        dest: '.claude/commands/edax-review.md' },
+  { src: '.claude/commands/edax-manual.md',        dest: '.claude/commands/edax-manual.md' },
 ];
 
 const EMPTY_DIRS = ['config', 'runs'];
