@@ -1,6 +1,6 @@
 # agentic-method — instância
 
-Esta pasta é uma **instância** do template `agentic-method`. O template-mãe (orquestrador **Edax Maximus Andres I**, subagente `critic`, skills do Setup e slash commands) está instalado em `~/.claude/` via `npx @edaxtech/agentic-method install` — não precisa estar aqui.
+Esta pasta é uma **instância** do template `agentic-method`. O template-mãe (orquestrador **Edax Maximus Andres I**, subagente `critic`, skills do Setup e slash commands) está instalado em `~/.claude/` via `npx github:EdaxTech/agentic-method install` — não precisa estar aqui.
 
 Esta pasta contém apenas o que é específico deste caso de uso: as configs do Setup (`config/`), as execuções (`runs/`), e — depois do Setup — as skills/subagentes que Edax gerar para o seu problema (`.claude/agents/`, `.claude/skills/`).
 
@@ -27,7 +27,7 @@ Em uma nova conversa, peça: *"Edax, vamos começar."* — ou rode `/edax-setup`
 ## Atualizar o template-mãe
 
 ```
-npx @edaxtech/agentic-method update
+npx github:EdaxTech/agentic-method update
 ```
 
 Reinstala edax/critic/skills/commands em `~/.claude/`. Não toca em nada desta pasta de instância.

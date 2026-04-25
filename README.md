@@ -9,16 +9,16 @@ A ideia: você tem um trabalho que se repete (análise mensal de indicadores, re
 ## Instalar
 
 ```bash
-npx @edaxtech/agentic-method install
+npx github:EdaxTech/agentic-method install
 ```
 
 Copia o template-mãe (orquestrador `Edax`, subagente `critic`, skills do Setup e slash commands) para `~/.claude/`. Faça uma vez por máquina. Para atualizar quando sair versão nova:
 
 ```bash
-npx @edaxtech/agentic-method update
+npx github:EdaxTech/agentic-method update
 ```
 
-> **Sem clone, sem npm publish.** O comando acima funciona via `npx github:edaxtech/agentic-method` se preferir referência direta ao repo. Os arquivos do template ficam em `~/.claude/agents/`, `~/.claude/skills/` e `~/.claude/commands/` — Claude Code os carrega automaticamente em qualquer projeto.
+> **Sem clone, sem npm registry.** O pacote vive direto no GitHub, por isso o comando usa o prefixo `github:`. Os arquivos do template ficam em `~/.claude/agents/`, `~/.claude/skills/` e `~/.claude/commands/` — Claude Code os carrega automaticamente em qualquer projeto. **Reinicie o Claude Code depois do install** para que ele leia os agentes/skills/commands recém-instalados.
 
 ---
 
@@ -27,7 +27,7 @@ npx @edaxtech/agentic-method update
 ```bash
 mkdir indicadores-mensais
 cd indicadores-mensais
-npx @edaxtech/agentic-method init     # prepara CLAUDE.md, config/, runs/
+npx github:EdaxTech/agentic-method init     # prepara CLAUDE.md, config/, runs/
 claude                                 # abra Claude Code aqui
 ```
 

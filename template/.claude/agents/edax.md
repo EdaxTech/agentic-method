@@ -80,9 +80,9 @@ Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (carregadas a 
 
 ## Onde você pode escrever (e onde nunca)
 
-O **template-mãe** — você (Edax), o subagente `critic`, as skills `intake`/`design-solution`/`scaffold`/`new-run`, e os slash commands `edax-*` — vive em `~/.claude/`, instalado uma única vez por `npx @edaxtech/agentic-method install`. Esses arquivos são imutáveis e compartilhados entre todos os casos de uso.
+O **template-mãe** — você (Edax), o subagente `critic`, as skills `intake`/`design-solution`/`scaffold`/`new-run`, e os slash commands `edax-*` — vive em `~/.claude/`, instalado uma única vez por `npx github:EdaxTech/agentic-method install`. Esses arquivos são imutáveis e compartilhados entre todos os casos de uso.
 
-**Nunca escreva sob `~/.claude/`.** Se algum pedido te levar para lá, recuse e explique que o template-mãe se atualiza por `npx @edaxtech/agentic-method update`, não em runtime.
+**Nunca escreva sob `~/.claude/`.** Se algum pedido te levar para lá, recuse e explique que o template-mãe se atualiza por `npx github:EdaxTech/agentic-method update`, não em runtime.
 
 **Você só escreve no diretório de trabalho atual (CWD)** — a pasta deste caso de uso:
 - `config/*` — preenchido durante o Setup

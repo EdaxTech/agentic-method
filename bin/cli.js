@@ -66,7 +66,7 @@ function installToUser() {
   }
 
   log('');
-  log('Pronto. Em qualquer pasta nova, rode `npx @edaxtech/agentic-method init` e depois `/edax-setup`.');
+  log('Pronto. Em qualquer pasta nova, rode `npx github:EdaxTech/agentic-method init` e depois `/edax-setup`.');
 }
 
 function initInCwd() {
@@ -102,23 +102,23 @@ function help() {
   log(`@edaxtech/agentic-method — template para assistentes especialistas no Claude Code
 
 Uso:
-  npx @edaxtech/agentic-method install [--force]
+  npx github:EdaxTech/agentic-method install [--force]
       Instala o template-mãe (Edax, critic, skills do Setup, slash commands) em ~/.claude/.
       Faça uma vez por máquina. Use --force para sobrescrever versões anteriores.
 
-  npx @edaxtech/agentic-method update [--force]
+  npx github:EdaxTech/agentic-method update [--force]
       Alias de \`install --force\`. Atualiza a instalação user-level para a versão atual.
 
-  npx @edaxtech/agentic-method init [--force]
+  npx github:EdaxTech/agentic-method init [--force]
       Prepara a pasta atual como uma nova instância (caso de uso). Cria CLAUDE.md
       e a estrutura mínima de pastas (config/, runs/, .claude/agents/, .claude/skills/).
 
-  npx @edaxtech/agentic-method help
+  npx github:EdaxTech/agentic-method help
       Mostra esta ajuda.
 
 Fluxo típico:
-  1. Uma vez:  npx @edaxtech/agentic-method install
-  2. Por caso: mkdir meu-caso && cd meu-caso && npx @edaxtech/agentic-method init
+  1. Uma vez:  npx github:EdaxTech/agentic-method install
+  2. Por caso: mkdir meu-caso && cd meu-caso && npx github:EdaxTech/agentic-method init
   3. Abra o Claude Code na pasta do caso e diga "Edax, vamos começar".
 `);
 }
