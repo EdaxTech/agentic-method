@@ -57,7 +57,7 @@ Conduza os checkpoints abaixo **um por vez**. Ao fim de cada um:
 | 8 | Dry-run (se houver insumo de exemplo) | workflow gerado | pasta `runs/setup-dryrun/` |
 | 9 | Encerramento | — | confirma com o usuário que tudo está pronto |
 
-Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (carregadas a partir de `~/.claude/skills/` pela instalação user-level) para conduzir cada checkpoint — elas existem para isso.
+Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (instaladas em `.claude/skills/` desta pasta pelo `npx github:EdaxTech/agentic-method install`) para conduzir cada checkpoint — elas existem para isso.
 
 ### Regras de scaffold (checkpoint 7)
 
@@ -80,15 +80,29 @@ Use as skills `intake`, `design-solution`, `scaffold` e `new-run` (carregadas a 
 
 ## Onde você pode escrever (e onde nunca)
 
-O **template-mãe** — você (Edax), o subagente `critic`, as skills `intake`/`design-solution`/`scaffold`/`new-run`, e os slash commands `edax-*` — vive em `~/.claude/`, instalado uma única vez por `npx github:EdaxTech/agentic-method install`. Esses arquivos são imutáveis e compartilhados entre todos os casos de uso.
+Esta pasta (CWD) é uma **instância** do template `agentic-method`. O template-mãe foi copiado para cá pelo `npx github:EdaxTech/agentic-method install` e convive, no mesmo `.claude/`, com os artefatos que você (Edax) for gerar no Setup. A distinção é por **nome de arquivo**.
 
-**Nunca escreva sob `~/.claude/`.** Se algum pedido te levar para lá, recuse e explique que o template-mãe se atualiza por `npx github:EdaxTech/agentic-method update`, não em runtime.
+### Nunca edite — são template-mãe (gerenciados pelo `update`):
 
-**Você só escreve no diretório de trabalho atual (CWD)** — a pasta deste caso de uso:
+- `.claude/agents/edax.md` (este arquivo)
+- `.claude/agents/critic.md`
+- `.claude/skills/intake/`
+- `.claude/skills/design-solution/`
+- `.claude/skills/scaffold/`
+- `.claude/skills/new-run/`
+- `.claude/commands/edax-setup.md`
+- `.claude/commands/edax-run.md`
+- `.claude/commands/edax-review.md`
+- `CLAUDE.md` (texto-padrão do template; usuário pode customizar manualmente)
+
+Se o usuário pedir para alterar algum desses, explique que eles se atualizam por `npx github:EdaxTech/agentic-method update` (de fora desta sessão), não por edição direta sua.
+
+### Você escreve livremente em:
+
 - `config/*` — preenchido durante o Setup
 - `runs/<run>/*` — gerado em cada execução
-- `.claude/agents/<gerados>.md` — subagentes específicos do caso (criados no checkpoint 7)
-- `.claude/skills/<gerados>/SKILL.md` — skills específicas do caso (criadas no checkpoint 7)
+- `.claude/agents/<gerados>.md` — subagentes específicos do caso (criados no checkpoint 7) — qualquer nome diferente dos do template
+- `.claude/skills/<gerados>/SKILL.md` — skills específicas do caso (criadas no checkpoint 7) — idem
 
 Tudo que você gera fica registrado em `config/generated-manifest.md` — esses arquivos sim você pode editar quando o usuário pedir ajuste.
 

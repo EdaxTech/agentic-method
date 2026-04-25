@@ -1,42 +1,39 @@
 # agentic-method
 
-Template-mãe para transformar tarefas profissionais recorrentes em **assistentes especialistas reutilizáveis** dentro do [Claude Code](https://claude.com/claude-code).
+Template para transformar tarefas profissionais recorrentes em **assistentes especialistas reutilizáveis** dentro do [Claude Code](https://claude.com/claude-code).
 
-A ideia: você tem um trabalho que se repete (análise mensal de indicadores, revisão de contratos, fechamento de campanha, ...). Você instala o template uma vez, cria uma pasta para cada caso de uso, e conversa com o orquestrador **Edax Maximus Andres I** (intimamente, **Edax**) sobre o problema. Ao fim do diálogo, aquela pasta vira um assistente que executa esse trabalho para você sob demanda — com rastreabilidade, revisão crítica e estrutura de auditoria.
-
----
-
-## Instalar
-
-```bash
-npx github:EdaxTech/agentic-method install
-```
-
-Copia o template-mãe (orquestrador `Edax`, subagente `critic`, skills do Setup e slash commands) para `~/.claude/`. Faça uma vez por máquina. Para atualizar quando sair versão nova:
-
-```bash
-npx github:EdaxTech/agentic-method update
-```
-
-> **Sem clone, sem npm registry.** O pacote vive direto no GitHub, por isso o comando usa o prefixo `github:`. Os arquivos do template ficam em `~/.claude/agents/`, `~/.claude/skills/` e `~/.claude/commands/` — Claude Code os carrega automaticamente em qualquer projeto. **Reinicie o Claude Code depois do install** para que ele leia os agentes/skills/commands recém-instalados.
+A ideia: você tem um trabalho que se repete (análise mensal de indicadores, revisão de contratos, fechamento de campanha, ...). Você cria uma pasta para o caso de uso, instala o template ali dentro, e conversa com o orquestrador **Edax Maximus Andres I** (intimamente, **Edax**) sobre o problema. Ao fim do diálogo, aquela pasta vira um assistente que executa esse trabalho para você sob demanda — com rastreabilidade, revisão crítica e estrutura de auditoria.
 
 ---
 
-## Usar — fluxo típico
+## Instalar e usar
 
 ```bash
 mkdir indicadores-mensais
 cd indicadores-mensais
-npx github:EdaxTech/agentic-method init     # prepara CLAUDE.md, config/, runs/
-claude                                 # abra Claude Code aqui
+npx github:EdaxTech/agentic-method install
+claude          # abra o Claude Code aqui
 ```
 
 E na conversa: *"Edax, vamos começar."* (ou rode `/edax-setup`).
+
+> **Por que `github:` em vez de `@edaxtech/...`?** O pacote vive direto no GitHub, sem publicação no npm registry. O prefixo `github:` faz o `npx` baixar do repo. Se uma sessão do Claude Code já estava aberta nesta pasta, **reinicie-a** depois do install — agentes/skills só são lidos na inicialização.
 
 A partir daí, Edax detecta automaticamente em qual modo operar:
 
 - **Setup** — primeira vez. Conduz a entrevista, com aprovação a cada etapa, e gera os agentes/skills específicos do seu problema.
 - **Runtime** — depois de configurado. Cria nova execução em `runs/`, processa insumos, chama o crítico, entrega o resultado.
+
+Para iniciar **outro** caso de uso, repita o `install` em outra pasta. Cada caso de uso é uma instância **independente** — sem state global, sem contaminação de outros projetos no Claude Code.
+
+### Atualizar uma instância para a versão mais recente
+
+```bash
+cd indicadores-mensais
+npx github:EdaxTech/agentic-method update
+```
+
+Sobrescreve apenas os arquivos do template-mãe na pasta. Não toca em `config/`, `runs/`, ou nos arquivos que Edax gerou no Setup.
 
 ---
 
@@ -78,16 +75,26 @@ A cada execução, Edax:
 
 ---
 
-## Onde mora cada coisa
+## Estrutura de uma instância
 
 ```
-~/.claude/                            ← instalação user-level (uma vez por máquina)
-├── agents/{edax,critic}.md
-├── skills/{intake,design-solution,scaffold,new-run}/
-└── commands/{edax-setup,edax-run,edax-review}.md
-
-~/trabalhos/indicadores-mensais/      ← uma instância (por caso de uso)
-├── CLAUDE.md                         ← cópia colocada por `init`
+~/trabalhos/indicadores-mensais/
+├── CLAUDE.md                         ← copiado do template
+├── .claude/
+│   ├── agents/
+│   │   ├── edax.md                   ← template
+│   │   ├── critic.md                 ← template
+│   │   └── <gerados>.md              ← criados pelo Edax no Setup
+│   ├── skills/
+│   │   ├── intake/                   ← template
+│   │   ├── design-solution/          ← template
+│   │   ├── scaffold/                 ← template
+│   │   ├── new-run/                  ← template
+│   │   └── <gerados>/                ← criados pelo Edax no Setup
+│   └── commands/
+│       ├── edax-setup.md             ← template
+│       ├── edax-run.md               ← template
+│       └── edax-review.md            ← template
 ├── config/                           ← preenchido no Setup
 │   ├── language.md
 │   ├── sipoc.md
@@ -96,9 +103,6 @@ A cada execução, Edax:
 │   ├── workflow.md
 │   ├── critic-criteria.md
 │   └── generated-manifest.md
-├── .claude/
-│   ├── agents/<gerados>.md           ← subagentes específicos do caso (criados no Setup)
-│   └── skills/<gerados>/SKILL.md     ← skills específicas do caso (criadas no Setup)
 └── runs/
     └── YYYY-MM[-vN]/
         ├── _run.md
@@ -108,9 +112,11 @@ A cada execução, Edax:
         └── 30-entregaveis/
 ```
 
+A distinção entre **template** e **gerado** é por nome: `edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run` e prefixos `edax-` são template (gerenciados pelo `update`); qualquer outro nome em `.claude/` foi criado pelo Edax e pode ser editado livremente.
+
 ---
 
-## Slash commands
+## Slash commands (disponíveis dentro de uma instância)
 
 | Comando | Quando usar |
 |---------|-------------|
@@ -127,7 +133,7 @@ A cada execução, Edax:
 - **Rastreabilidade.** Cada artefato gerado entra em `config/generated-manifest.md`. Cada execução preserva insumos, análises, revisão crítica e entregável em sua própria pasta. Reprocessamento cria `-v2/`, nunca sobrescreve.
 - **Revisão crítica embutida.** O subagente `critic` aplica 8 critérios universais (fidelidade aos dados, consistência, premissas explícitas, cobertura vs. spec, tratamento de faltantes, reprodutibilidade, calibração, escopo) somados aos critérios do seu domínio.
 - **Idioma escolhido pelo usuário.** O Setup pergunta dois idiomas (conversa e artefatos). Tudo respeita essa escolha — não é hard-coded em PT.
-- **Template-mãe imutável, instâncias evoluem.** Atualizações ao template-mãe via `npx update` não tocam nos casos de uso já configurados. Cada instância é dona da sua própria evolução.
+- **Instância isolada.** Sem state global em `~/.claude/`. Cada caso de uso é uma pasta autônoma — pode ser zipada e enviada a outra pessoa, versionada em git, ou apagada sem afetar outros projetos.
 
 ---
 
@@ -141,9 +147,9 @@ A cada execução, Edax:
 
 ## Iterando o template
 
-O template-mãe vive em `~/.claude/` (instalado por `npx install`). Para evoluí-lo: clone este repo, mexa em `template/`, e abra um PR — ou faça fork e instale a sua versão (`npx github:seu-fork/agentic-method install`).
+Para evoluir o template-mãe: clone este repo, mexa em `template/`, e abra um PR — ou faça fork e use `npx github:seu-fork/agentic-method install` nas suas instâncias.
 
-Tudo que Edax gera nas instâncias fica isolado em cada pasta de caso de uso e não conflita com o template.
+Tudo que Edax gera nas instâncias fica isolado em cada pasta de caso de uso e não conflita com o template-mãe.
 
 ---
 

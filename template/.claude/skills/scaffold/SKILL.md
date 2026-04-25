@@ -150,11 +150,11 @@ Após gerar, **releia o arquivo uma vez** com essas regras em mente — corrija 
 
 ## Onde escrever, e onde nunca
 
-Você **só escreve no diretório de trabalho atual (CWD)** — especificamente em `.claude/agents/<nome>.md` e `.claude/skills/<nome>/SKILL.md` deste caso de uso.
+Você escreve em `.claude/agents/<nome>.md` e `.claude/skills/<nome>/SKILL.md` desta pasta — **ao lado** dos arquivos do template-mãe que já estão lá. A distinção é por nome de arquivo.
 
-Você **nunca escreve em `~/.claude/`** — lá vive a instalação user-level do template-mãe (`Edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run`, slash commands `max-*`), que é imutável e compartilhada por todos os casos de uso.
+**Nomes reservados ao template-mãe (não use):** `edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run`. Os arquivos correspondentes em `.claude/agents/`, `.claude/skills/` e `.claude/commands/` (com prefixo `edax-`) são geridos pelo `npx github:EdaxTech/agentic-method update`, não por você.
 
-Se algum nome proposto na tabela de artefatos colidir com um nome do template-mãe (`Edax`, `critic`, `intake`, `design-solution`, `scaffold`, `new-run`), **pare na etapa A** e peça ao usuário (via Edax) para renomear o artefato no `workflow.md` — homônimos em CWD criariam sobreposição confusa, ainda que tecnicamente possível.
+Se algum nome proposto na tabela de artefatos colidir com um desses, **pare na etapa A** e peça ao usuário (via Edax) para renomear o artefato no `workflow.md` — sobrescrever um arquivo do template quebraria o próprio Edax.
 
 ---
 
