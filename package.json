@@ -1,0 +1,35 @@
+{
+  "name": "@edaxtech/agentic-method",
+  "version": "0.1.0",
+  "description": "Template-mãe para transformar tarefas profissionais recorrentes em assistentes especialistas no Claude Code, via SIPOC e geração customizada de skills/subagentes.",
+  "bin": {
+    "agentic-method": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "template/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdaxTech/agentic-method.git"
+  },
+  "homepage": "https://github.com/EdaxTech/agentic-method#readme",
+  "bugs": {
+    "url": "https://github.com/EdaxTech/agentic-method/issues"
+  },
+  "license": "MIT",
+  "author": "EdaxTech",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "skills",
+    "sipoc",
+    "automation",
+    "workflow"
+  ]
+}
